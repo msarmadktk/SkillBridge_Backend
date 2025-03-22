@@ -5,10 +5,10 @@ const { generateToken } = require('../utils/jwtUtils');
 
 exports.signup = async (req, res) => {
   try {
-    const { email, password, userType } = req.body;
+    const { email, password, user_type } = req.body;
     
     // Validate user type
-    if (!['freelancer', 'client', 'admin'].includes(userType)) {
+    if (!['freelancer', 'client', 'admin'].includes(user_type)) {
       return res.status(400).json({ error: 'Invalid user type' });
     }
     
@@ -25,11 +25,11 @@ exports.signup = async (req, res) => {
     // Insert user
     const result = await db.query(
       'INSERT INTO users (email, password_hash, user_type) VALUES ($1, $2, $3) RETURNING id, email, user_type, status, created_at',
-      [email, passwordHash, userType]
+      [email, passwordHash, user_type]
     );
     
     // Create connects entry for new user (only for freelancers)
-    if (userType === 'freelancer') {
+    if (user_type === 'freelancer') {
       await db.query('INSERT INTO connects (user_id, balance) VALUES ($1, $2)', [result.rows[0].id, 10]);
     }
     
@@ -78,7 +78,7 @@ exports.login = async (req, res) => {
       user: {
         id: user.id,
         email: user.email,
-        userType: user.user_type,
+        user_type: user.user_type,
         status: user.status
       },
       token

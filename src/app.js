@@ -7,6 +7,7 @@ require('dotenv').config();
 // Import routes
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
+
 const profileRoutes = require('./routes/profileRoutes');
 const jobRoutes = require('./routes/jobRoutes');
 const learningRoutes = require('./routes/learningRoutes');
@@ -17,6 +18,8 @@ const balanceRoutes = require('./routes/balanceRoutes');
 const digitalProductRoutes = require('./routes/digitalProductRoutes');
 const workHistoryRoutes = require('./routes/workHistoryRoutes');
 
+const userIdRoute = require('./routes/getUserIdRoute');
+const categoryRoutes = require('./routes/categoryRoutes');
 // Initialize the app
 const app = express();
 
@@ -39,6 +42,10 @@ app.use('/api/invitations', invitationRoutes);
 app.use('/api/balances', balanceRoutes);
 app.use('/api/digital-products', digitalProductRoutes);
 app.use('/api/work-history', workHistoryRoutes);
+
+app.use('/api/getUserId', userIdRoute);
+app.use('/api/categories', categoryRoutes);
+
 
 // Root route
 app.get('/', (req, res) => {

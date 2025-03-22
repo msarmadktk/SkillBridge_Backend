@@ -1030,3 +1030,125 @@ pm.environment.set("userId", jsonData.user.id);
   "message": "Work history entry deleted successfully"
 }
 ``` 
+
+
+1. Get User by ID
+Method: GET
+URL: {{baseUrl}}/api/users/{userId}
+Headers:
+
+Authorization: Bearer <your_token> (if authentication is required)
+
+Example Request:
+
+http
+Copy
+Edit
+GET {{baseUrl}}/api/users/123
+Expected Response (200 OK):
+
+json
+Copy
+Edit
+{
+  "id": 123,
+  "name": "John Doe",
+  "email": "johndoe@example.com",
+  "role": "client",
+  "created_at": "2023-05-01T12:00:00.000Z",
+  "updated_at": "2023-05-10T15:30:00.000Z"
+}
+
+
+
+------------------------------------------------------------------------------------------------------
+
+
+✅ 1. Get All Categories
+Endpoint: GET /getAllCategories
+
+Description: Fetch all job categories with their id and name.
+
+🔸 Request:
+Method: GET
+
+URL: http://localhost:5000/api/categories/getAllCategories
+
+🔸 Response:
+json
+Copy
+Edit
+[
+  {
+    "id": 1,
+    "name": "Web Development"
+  },
+  {
+    "id": 2,
+    "name": "Graphic Design"
+  }
+]
+✅ 2. Get Category ID by Name
+Endpoint: POST /getCategoryIdByName
+
+Description: Retrieve the id of a category using its name.
+
+🔸 Request:
+Method: POST
+
+URL: http://localhost:5000/api/categories/getCategoryIdByName
+
+Body (JSON):
+
+json
+Copy
+Edit
+{
+  "name": "Web Development"
+}
+🔸 Response:
+json
+Copy
+Edit
+{
+  "id": 1
+}
+🔸 Error Response:
+json
+Copy
+Edit
+{
+  "error": "Category not found"
+}
+✅ 3. Get Category Name by ID
+Endpoint: POST /getCategoryNameById
+
+Description: Retrieve the name of a category using its id.
+
+🔸 Request:
+Method: POST
+
+URL: http://localhost:5000/api/categories/getCategoryNameById
+
+Body (JSON):
+
+json
+Copy
+Edit
+{
+  "id": 1
+}
+🔸 Response:
+json
+Copy
+Edit
+{
+  "name": "Web Development"
+}
+🔸 Error Response:
+json
+Copy
+Edit
+{
+  "error": "Category not found"
+}
