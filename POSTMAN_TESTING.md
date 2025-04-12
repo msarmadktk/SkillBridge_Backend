@@ -1033,9 +1033,17 @@ pm.environment.set("userId", jsonData.user.id);
 
 
 1. Get User by ID
-Method: GET
-URL: {{baseUrl}}/api/users/{userId}
+Method: POST
+URL: http://localhost:5000/api/getUserId
 Headers:
+{
+  "email": "i221213@nu.edu.pk"
+}
+
+Response:
+{
+    "userId": 17
+}
 
 Authorization: Bearer <your_token> (if authentication is required)
 
@@ -1088,6 +1096,8 @@ Edit
     "name": "Graphic Design"
   }
 ]
+
+
 ✅ 2. Get Category ID by Name
 Endpoint: POST /getCategoryIdByName
 
